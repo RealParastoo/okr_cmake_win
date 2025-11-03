@@ -1,4 +1,9 @@
 #include <iostream>
+#include <greet/greet.h>
+
+using namespace std;
+
 int main(){ 
-    std::cout << "Hello CMake\n"; 
+    cout << greet() << endl; 
+    return 0;
 }
