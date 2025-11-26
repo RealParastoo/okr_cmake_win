@@ -1,9 +1,18 @@
+#ifdef ENABLE_EXTRA
+#pragma message("ENABLE_EXTRA is visible in main.cpp")
+#else
+#pragma message("ENABLE_EXTRA is NOT visible in main.cpp")
+#endif
+
 #include <iostream>
-#include <greet/greet.h>
+#include "greet/greet.h"
 
-using namespace std;
+int main() {
+    std::cout << greet() << "\n";
 
-int main(){ 
-    cout << greet() << endl; 
+#ifdef ENABLE_EXTRA
+    std::cout << greet_extra() << "\n";
+#endif
+
     return 0;
 }

@@ -1,12 +1,6 @@
 #include "greet/greet.h"
 #include <string>
 
-std::string greet() {
-    return "Hello from greet()";
-}
-
-#ifdef ENABLE_EXTRA
 std::string greet_extra() {
     return "Extra greeting enabled";
 }
-#endif
