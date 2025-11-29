@@ -27,6 +27,21 @@
 #######################################################################
 #######################################################################
 # compile time option:
+# cmake_minimum_required(VERSION 3.15)
+# project(okr_cmake_win VERSION 0.1 LANGUAGES CXX)
+# option(ENABLE_EXTRA "Enable extra greeting" OFF)
+# add_library(greet STATIC src/greet.cpp)
+# if(ENABLE_EXTRA)
+#     target_sources(greet PRIVATE src/greet_extra.cpp)
+#     target_compile_definitions(greet PUBLIC ENABLE_EXTRA=1)
+# endif()
+# target_include_directories(greet PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+# target_compile_features(greet PUBLIC cxx_std_17)
+# add_executable(okr_cmake_win src/main.cpp)
+# target_link_libraries(okr_cmake_win PRIVATE greet)
+#######################################################################
+#######################################################################
+# CTest:
 cmake_minimum_required(VERSION 3.15)
 project(okr_cmake_win VERSION 0.1 LANGUAGES CXX)
 option(ENABLE_EXTRA "Enable extra greeting" OFF)
@@ -39,5 +54,11 @@ target_include_directories(greet PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_compile_features(greet PUBLIC cxx_std_17)
 add_executable(okr_cmake_win src/main.cpp)
 target_link_libraries(okr_cmake_win PRIVATE greet)
+enable_testing()
+add_executable(test_greet test/test_greet.cpp)
+target_link_libraries(test_greet PRIVATE greet)
+add_test(NAME test_case1 COMMAND test_greet --mode=fast)
+add_test(NAME test_case2 COMMAND test_greet --mode=slow)
+add_test(NAME test_case3 COMMAND test_greet --mode=extra)
 #######################################################################
 #######################################################################
